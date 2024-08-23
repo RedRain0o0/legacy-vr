@@ -39,6 +39,30 @@ dependencies {
 	//modImplementation "maven.modrinth:legacy4j:${project.minecraft_version}-${project.legacy_version}+fabric"
 	modImplementation "maven.modrinth:vivecraft:${project.minecraft_version}-${project.vivecraft_version}-fabric"
 	//localRuntime "dev.isxander:libsdl4j:3.693c75e-36"
+
+	Set<String> apiModules = [
+			"fabric-api-base",
+			"fabric-command-api-v2",
+			"fabric-resource-loader-v0"
+	]
+
+	apiModules.forEach {
+		include(modImplementation(fabricApi.module(it, ${project.fabric_version})))
+	}
+
+	// needed for resource loading
+	//modImplementation(fabricApi.module("fabric-resource-loader-v0${project.fabric_version}"))
+	// commands also needs base
+	//include(modImplementation(fabricApi.module("fabric-api-base", ${project.fabric_version})))
+	//include(modImplementation(fabricApi.module("fabric-command-api-v2", ${project.fabric_version})))
+
+	include(implementation('com.electronwill.night-config:toml:3.6.6'))
+	include(implementation('com.electronwill.night-config:core:3.6.6'))
+
+	include(implementation("org.lwjgl:lwjgl-openvr:3.3.2"))
+	include(implementation("org.lwjgl:lwjgl-openvr:3.3.2:natives-linux"))
+	include(implementation("org.lwjgl:lwjgl-openvr:3.3.2:natives-macos"))
+	include(implementation("org.lwjgl:lwjgl-openvr:3.3.2:natives-windows"))
 }
 
 processResources {
