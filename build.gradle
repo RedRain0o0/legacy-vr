@@ -47,7 +47,7 @@ dependencies {
 	]
 
 	apiModules.forEach {
-		include(modImplementation(fabricApi.module(it, ${project.fabric_version})))
+		include(modImplementation(fabricApi.module(it, "${project.fabric_version}")))
 	}
 
 	// needed for resource loading
